@@ -346,17 +346,17 @@
                 }
             },
             "interactivity": {
-                "detect_on": "window", // Changed to 'window' so it detects taps anywhere on the screen
+                "detect_on": "canvas",
                 "events": {
                     "onhover": { "enable": true, "mode": "grab" },
-                    "onclick": { "enable": true, "mode": "repulse" }, // Scatters particles on tap
+                    "onclick": { "enable": true, "mode": "push" }, 
                     "resize": true
                 },
                 "modes": {
                     "grab": { "distance": 160, "line_linked": { "opacity": 0.9 } },
-                    "repulse": { "distance": 150, "duration": 0.4 } // Controls the size/speed of the tap ripple
+                    "push": { "particles_nb": 4 } // Creates 4 new nodes every time you click or tap
                 }
-            },
+            },    
             "retina_detect": true
         });
     </script>
