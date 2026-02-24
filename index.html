@@ -38,17 +38,32 @@
     <div id="particles-js"></div>
     <nav class="fixed w-full glass shadow-sm z-50 transition-all content-layer">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">AF</a>
-            <div class="flex items-center gap-6">
+            <a href="#" class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">AF.</a>
+            
+            <div class="flex items-center gap-4 md:gap-6">
                 <div class="space-x-6 text-sm font-semibold text-gray-600 dark:text-gray-300 hidden md:block">
                     <a href="#about" class="hover:text-violet-600 dark:hover:text-violet-400 transition">About</a>
                     <a href="#skills" class="hover:text-violet-600 dark:hover:text-violet-400 transition">Skills</a>
                     <a href="#publications" class="hover:text-violet-600 dark:hover:text-violet-400 transition">Publications</a>
                     <a href="#projects" class="hover:text-violet-600 dark:hover:text-violet-400 transition">Projects</a>
                 </div>
+                
                 <button id="theme-toggle" class="text-gray-600 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none transition">
                     <i id="theme-toggle-icon" class="fas fa-moon text-lg"></i>
                 </button>
+
+                <button id="mobile-menu-btn" class="md:hidden text-gray-600 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none transition ml-2">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-t border-gray-100 dark:border-gray-800 absolute w-full shadow-lg">
+            <div class="flex flex-col px-6 py-4 space-y-4 text-center text-sm font-semibold text-gray-600 dark:text-gray-300">
+                <a href="#about" class="mobile-link hover:text-violet-600 dark:hover:text-violet-400 transition">About</a>
+                <a href="#skills" class="mobile-link hover:text-violet-600 dark:hover:text-violet-400 transition">Skills</a>
+                <a href="#publications" class="mobile-link hover:text-violet-600 dark:hover:text-violet-400 transition">Publications</a>
+                <a href="#projects" class="mobile-link hover:text-violet-600 dark:hover:text-violet-400 transition">Projects</a>
             </div>
         </div>
     </nav>
@@ -234,8 +249,8 @@
     <footer class="bg-gray-900 text-gray-400 py-8 text-center content-layer">
         <p>&copy; Antonio Finocchiaro</p>
     </footer>
-    <script>
-        // Theme Toggle Logic
+ <script>
+        // 1. Theme Toggle Logic (Dark/Light Mode)
         const themeToggleBtn = document.getElementById('theme-toggle');
         const themeToggleIcon = document.getElementById('theme-toggle-icon');
 
@@ -259,7 +274,33 @@
             }
         });
 
-        // Scroll fade-in effect
+        // 2. Mobile Menu Toggle Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuIcon = mobileMenuBtn.querySelector('i');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            // Switch icon between hamburger and X
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenuIcon.classList.remove('fa-times');
+                mobileMenuIcon.classList.add('fa-bars');
+            } else {
+                mobileMenuIcon.classList.remove('fa-bars');
+                mobileMenuIcon.classList.add('fa-times');
+            }
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuIcon.classList.remove('fa-times');
+                mobileMenuIcon.classList.add('fa-bars');
+            });
+        });
+
+        // 3. Scroll fade-in effect
         document.addEventListener("DOMContentLoaded", () => {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -272,19 +313,19 @@
                 observer.observe(el);
             });
         });
-        
-        // Initialize Particles.js 2D Network
+
+        // 4. Initialize Particles.js 2D Network
         particlesJS("particles-js", {
             "particles": {
                 "number": { "value": 70, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#7c3aed" }, // Violet to match theme
+                "color": { "value": "#7c3aed" }, 
                 "shape": { "type": "circle" },
                 "opacity": { "value": 0.7, "random": false },
                 "size": { "value": 4, "random": true },
                 "line_linked": {
                     "enable": true,
                     "distance": 120,
-                    "color": "#a78bfa", // Lighter violet for links
+                    "color": "#a78bfa", 
                     "opacity": 0.6,
                     "width": 1.5
                 },
@@ -313,5 +354,3 @@
             "retina_detect": true
         });
     </script>
-</body>
-</html>
