@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,17 +15,58 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-        .content-layer { position: relative; z-index: 10; }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .content-layer {
+            position: relative;
+            z-index: 10;
+        }
+
         /* Fixed full-screen background for Particles */
-        #particles-js { position: fixed; width: 100vw; height: 100vh; top: 0; left: 0; z-index: 0; opacity: 0.9; }
+        #particles-js {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            opacity: 0.9;
+        }
+
         /* Glassmorphism utility */
-        .glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border-top: 1px solid rgba(255, 255, 255, 0.3); }
-        .dark .glass { background: rgba(31, 41, 55, 0.85); border-top: 1px solid rgba(255, 255, 255, 0.1); }
-        .glass-dark { background: rgba(248, 250, 252, 0.85); backdrop-filter: blur(12px); }
-        .dark .glass-dark { background: rgba(17, 24, 39, 0.85); border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        .glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .dark .glass {
+            background: rgba(31, 41, 55, 0.85);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-dark {
+            background: rgba(248, 250, 252, 0.85);
+            backdrop-filter: blur(12px);
+        }
+
+        .dark .glass-dark {
+            background: rgba(17, 24, 39, 0.85);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
     </style>
     <script>
         if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -34,144 +76,231 @@
         }
     </script>
 </head>
-<body class="bg-gray-50 dark:bg-gray-950 text-gray-800 dark:text-gray-200 antialiased selection:bg-violet-200 dark:selection:bg-violet-900 transition-colors duration-300">
+
+<body
+    class="bg-gray-50 dark:bg-gray-950 text-gray-800 dark:text-gray-200 antialiased selection:bg-violet-200 dark:selection:bg-violet-900 transition-colors duration-300">
     <div id="particles-js"></div>
-  <nav class="fixed w-full glass shadow-sm z-50 transition-all content-layer">
+    <nav class="fixed w-full glass shadow-sm z-50 transition-all content-layer">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">AF</a>
-            
+
             <div class="flex items-center gap-4 md:gap-6">
                 <div class="space-x-6 text-sm font-semibold text-gray-600 dark:text-gray-300 hidden md:block">
                     <a href="#about" class="hover:text-violet-600 dark:hover:text-violet-400 transition">About</a>
                     <a href="#skills" class="hover:text-violet-600 dark:hover:text-violet-400 transition">Skills</a>
-                    <a href="#publications" class="hover:text-violet-600 dark:hover:text-violet-400 transition">Publications</a>
+                    <a href="#publications"
+                        class="hover:text-violet-600 dark:hover:text-violet-400 transition">Publications</a>
                     <a href="#projects" class="hover:text-violet-600 dark:hover:text-violet-400 transition">Projects</a>
                 </div>
-                
-                <button id="theme-toggle" class="text-gray-600 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none transition hover:scale-110 transform duration-200">
+
+                <button id="theme-toggle"
+                    class="text-gray-600 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none transition hover:scale-110 transform duration-200">
                     <i id="theme-toggle-icon" class="fas fa-moon text-lg"></i>
                 </button>
 
-                <button id="mobile-menu-btn" class="md:hidden text-gray-600 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none transition ml-2 hover:scale-110 transform duration-200">
+                <button id="mobile-menu-btn"
+                    class="md:hidden text-gray-600 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none transition ml-2 hover:scale-110 transform duration-200">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
 
-        <div id="mobile-menu" class="opacity-0 pointer-events-none -translate-y-4 md:hidden absolute top-full left-0 w-full bg-white/85 dark:bg-gray-950/85 backdrop-blur-3xl border-b border-gray-200/50 dark:border-gray-800/80 shadow-2xl transition-all duration-300 ease-out rounded-b-3xl">
-            <div class="flex flex-col px-6 py-8 space-y-6 text-center text-lg font-bold text-gray-800 dark:text-white tracking-wide">
-                <a href="#about" class="mobile-link block hover:text-violet-600 dark:hover:text-violet-400 transform transition-transform duration-200 hover:scale-105">About</a>
-                <a href="#skills" class="mobile-link block hover:text-violet-600 dark:hover:text-violet-400 transform transition-transform duration-200 hover:scale-105">Skills</a>
-                <a href="#publications" class="mobile-link block hover:text-violet-600 dark:hover:text-violet-400 transform transition-transform duration-200 hover:scale-105">Publications</a>
-                <a href="#projects" class="mobile-link block hover:text-violet-600 dark:hover:text-violet-400 transform transition-transform duration-200 hover:scale-105">Projects</a>
+        <div id="mobile-menu"
+            class="opacity-0 pointer-events-none -translate-y-4 md:hidden absolute top-full left-0 w-full bg-white/85 dark:bg-gray-950/85 backdrop-blur-3xl border-b border-gray-200/50 dark:border-gray-800/80 shadow-2xl transition-all duration-300 ease-out rounded-b-3xl">
+            <div
+                class="flex flex-col px-6 py-8 space-y-6 text-center text-lg font-bold text-gray-800 dark:text-white tracking-wide">
+                <a href="#about"
+                    class="mobile-link block hover:text-violet-600 dark:hover:text-violet-400 transform transition-transform duration-200 hover:scale-105">About</a>
+                <a href="#skills"
+                    class="mobile-link block hover:text-violet-600 dark:hover:text-violet-400 transform transition-transform duration-200 hover:scale-105">Skills</a>
+                <a href="#publications"
+                    class="mobile-link block hover:text-violet-600 dark:hover:text-violet-400 transform transition-transform duration-200 hover:scale-105">Publications</a>
+                <a href="#projects"
+                    class="mobile-link block hover:text-violet-600 dark:hover:text-violet-400 transform transition-transform duration-200 hover:scale-105">Projects</a>
             </div>
         </div>
     </nav>
-<section id="about" class="pt-32 pb-12 px-6 max-w-6xl mx-auto flex flex-col justify-center min-h-[85vh] content-layer">
+    <section id="about"
+        class="pt-32 pb-12 px-6 max-w-6xl mx-auto flex flex-col justify-center min-h-[85vh] content-layer">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch w-full mt-16">
-            
-            <div class="fade-in bg-slate-50/50 dark:bg-gray-900/50 backdrop-blur-md px-6 pb-6 lg:px-8 lg:pb-8 rounded-2xl shadow-xl flex flex-col items-center text-center relative border border-white/50 dark:border-gray-700 h-full">
+
+            <div
+                class="fade-in bg-slate-50/50 dark:bg-gray-900/50 backdrop-blur-md px-6 pb-6 lg:px-8 lg:pb-8 rounded-2xl shadow-xl flex flex-col items-center text-center relative border border-white/50 dark:border-gray-700 h-full">
                 <div class="-mt-16 mb-4">
-                    <img src="https://avatars.githubusercontent.com/antof27" alt="Antonio Finocchiaro" class="w-32 h-32 rounded-full border-4 border-white dark:border-gray-800 shadow-xl object-cover transition duration-500 hover:scale-105 bg-white dark:bg-gray-800">
+                    <img src="https://avatars.githubusercontent.com/antof27" alt="Antonio Finocchiaro"
+                        class="w-32 h-32 rounded-full border-4 border-white dark:border-gray-800 shadow-xl object-cover transition duration-500 hover:scale-105 bg-white dark:bg-gray-800">
                 </div>
-                <h1 class="text-3xl font-normal text-gray-900 dark:text-white tracking-tight mb-1">Antonio <span class="font-bold">Finocchiaro</span></h1>
-                <p class="text-base text-violet-600 dark:text-violet-400 font-semibold mb-4">PhD Student in Computer Science <br>@ University of Catania</p>
+                <h1 class="text-3xl font-normal text-gray-900 dark:text-white tracking-tight mb-1">Antonio <span
+                        class="font-bold">Finocchiaro</span></h1>
+                <p class="text-base text-violet-600 dark:text-violet-400 font-semibold mb-4">PhD Student in Computer
+                    Science <br>@ University of Catania</p>
                 <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-sm mb-6">
-                    My research focuses on <strong>Object Discovery from Egocentric Vision</strong>. I am passionate about Computer Vision, Deep Learning, and building real-time systems to understand human behavior and hand-object interactions.
+                    My research focuses on <strong>Object Discovery from Egocentric Vision</strong>. I am passionate
+                    about Computer Vision, Deep Learning, and building real-time systems to understand human behavior
+                    and hand-object interactions.
                 </p>
                 <div class="mt-auto flex flex-col items-center w-full">
-                    <a href="AFinocchiaroResume.pdf" target="_blank" class="inline-flex items-center gap-2 px-6 py-2.5 bg-violet-600 text-white text-sm font-semibold rounded-full hover:bg-violet-700 transition shadow-md hover:shadow-lg hover:-translate-y-1 mb-5">
+                    <a href="AFinocchiaroResume.pdf" target="_blank"
+                        class="inline-flex items-center gap-2 px-6 py-2.5 bg-violet-600 text-white text-sm font-semibold rounded-full hover:bg-violet-700 transition shadow-md hover:shadow-lg hover:-translate-y-1 mb-5">
                         <i class="fas fa-file-pdf"></i> View Resume
                     </a>
-                    <div class="flex space-x-6 border-t border-gray-200/50 dark:border-gray-700/50 pt-5 w-full justify-center">
-                        <a href="https://github.com/antof27" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white text-xl transition hover:scale-110"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/antonio-finocchiaro-834522288/" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-violet-700 dark:hover:text-violet-400 text-xl transition hover:scale-110"><i class="fab fa-linkedin"></i></a>
-                        <a href="mailto:antonio.finocchiaro@phd.unict.it" class="text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 text-xl transition hover:scale-110"><i class="fas fa-envelope"></i></a>
+                    <div
+                        class="flex space-x-6 border-t border-gray-200/50 dark:border-gray-700/50 pt-5 w-full justify-center">
+                        <a href="https://github.com/antof27" target="_blank"
+                            class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white text-xl transition hover:scale-110"><i
+                                class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/antonio-finocchiaro-834522288/" target="_blank"
+                            class="text-gray-600 dark:text-gray-400 hover:text-violet-700 dark:hover:text-violet-400 text-xl transition hover:scale-110"><i
+                                class="fab fa-linkedin"></i></a>
+                        <a href="mailto:antonio.finocchiaro@phd.unict.it"
+                            class="text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 text-xl transition hover:scale-110"><i
+                                class="fas fa-envelope"></i></a>
                     </div>
                 </div>
             </div>
 
-                <div class="fade-in bg-white/50 dark:bg-gray-800/50 backdrop-blur-md p-6 lg:p-8 rounded-2xl shadow-xl flex flex-col border border-white/50 dark:border-gray-700 h-full">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-white border-b-2 border-violet-600 dark:border-violet-500 pb-1.5 inline-block mb-8 self-start">Education</h2>
-        <div class="flex flex-col gap-4 flex-grow">
-    
-            <!-- Master's -->
-            <div class="relative flex gap-4 p-4 rounded-xl border border-gray-200/60 dark:border-gray-700/60 bg-white/60 dark:bg-gray-900/30 hover:bg-gray-50 dark:hover:bg-gray-800/40 transition-all group">
-                <div class="flex-shrink-0 mt-1">
-                    <div class="w-10 h-10 rounded-lg bg-gray-700 dark:bg-gray-600 flex items-center justify-center shadow-md">
-                        <i class="fas fa-university text-white text-sm"></i>
+            <div
+                class="fade-in bg-white/50 dark:bg-gray-800/50 backdrop-blur-md p-6 lg:p-8 rounded-2xl shadow-xl flex flex-col border border-white/50 dark:border-gray-700 h-full">
+                <h2
+                    class="text-xl font-bold text-gray-900 dark:text-white border-b-2 border-violet-600 dark:border-violet-500 pb-1.5 inline-block mb-8 self-start">
+                    Education</h2>
+                <div class="flex flex-col gap-4 flex-grow">
+
+                    <!-- Master's -->
+                    <div
+                        class="relative flex gap-4 p-4 rounded-xl border border-gray-200/60 dark:border-gray-700/60 bg-white/60 dark:bg-gray-900/30 hover:bg-gray-50 dark:hover:bg-gray-800/40 transition-all group">
+                        <div class="flex-shrink-0 mt-1">
+                            <div
+                                class="w-10 h-10 rounded-lg bg-gray-700 dark:bg-gray-600 flex items-center justify-center shadow-md">
+                                <i class="fas fa-university text-white text-sm"></i>
+                            </div>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-start justify-between gap-2 flex-wrap">
+                                <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-tight">Master's in
+                                    Computer Science</h3>
+                                <span
+                                    class="flex-shrink-0 inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400 text-[10px] font-semibold uppercase tracking-wide">110/110
+                                    ✦</span>
+                            </div>
+                            <p class="text-violet-600 dark:text-violet-400 font-medium text-xs mt-0.5">University of
+                                Catania</p>
+                            <p class="text-gray-400 dark:text-gray-500 text-[11px] mt-0.5">Oct 2023 – Sep 2025</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-xs mt-1.5 leading-relaxed">Thesis:
+                                Investigating Object Detection for Human Behavior Understanding.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="flex-1 min-w-0">
-                    <div class="flex items-start justify-between gap-2 flex-wrap">
-                        <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-tight">Master's in Computer Science</h3>
-                        <span class="flex-shrink-0 inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400 text-[10px] font-semibold uppercase tracking-wide">110/110 ✦</span>
+
+                    <!-- Bachelor's -->
+                    <div
+                        class="relative flex gap-4 p-4 rounded-xl border border-gray-200/60 dark:border-gray-700/60 bg-white/60 dark:bg-gray-900/30 hover:bg-gray-50 dark:hover:bg-gray-800/40 transition-all group">
+                        <div class="flex-shrink-0 mt-1">
+                            <div
+                                class="w-10 h-10 rounded-lg bg-gray-600 dark:bg-gray-700 flex items-center justify-center shadow-md">
+                                <i class="fas fa-book text-white text-sm"></i>
+                            </div>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-start justify-between gap-2 flex-wrap">
+                                <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-tight">Bachelor's in
+                                    Computer Science</h3>
+                                <span
+                                    class="flex-shrink-0 inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400 text-[10px] font-semibold uppercase tracking-wide">110/110
+                                    ✦</span>
+                            </div>
+                            <p class="text-violet-600 dark:text-violet-400 font-medium text-xs mt-0.5">University of
+                                Catania</p>
+                            <p class="text-gray-400 dark:text-gray-500 text-[11px] mt-0.5">Oct 2020 – Jul 2023</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-xs mt-1.5 leading-relaxed">Thesis: Temporal
+                                Video Segmentation of Calisthenics Skills.</p>
+                        </div>
                     </div>
-                    <p class="text-violet-600 dark:text-violet-400 font-medium text-xs mt-0.5">University of Catania</p>
-                    <p class="text-gray-400 dark:text-gray-500 text-[11px] mt-0.5">Oct 2023 – Sep 2025</p>
-                    <p class="text-gray-600 dark:text-gray-300 text-xs mt-1.5 leading-relaxed">Thesis: Investigating Object Detection for Human Behavior Understanding.</p>
+
                 </div>
+
             </div>
-    
-            <!-- Bachelor's -->
-            <div class="relative flex gap-4 p-4 rounded-xl border border-gray-200/60 dark:border-gray-700/60 bg-white/60 dark:bg-gray-900/30 hover:bg-gray-50 dark:hover:bg-gray-800/40 transition-all group">
-                <div class="flex-shrink-0 mt-1">
-                    <div class="w-10 h-10 rounded-lg bg-gray-600 dark:bg-gray-700 flex items-center justify-center shadow-md">
-                        <i class="fas fa-book text-white text-sm"></i>
-                    </div>
-                </div>
-                <div class="flex-1 min-w-0">
-                    <div class="flex items-start justify-between gap-2 flex-wrap">
-                        <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-tight">Bachelor's in Computer Science</h3>
-                        <span class="flex-shrink-0 inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400 text-[10px] font-semibold uppercase tracking-wide">110/110 ✦</span>
-                    </div>
-                    <p class="text-violet-600 dark:text-violet-400 font-medium text-xs mt-0.5">University of Catania</p>
-                    <p class="text-gray-400 dark:text-gray-500 text-[11px] mt-0.5">Oct 2020 – Jul 2023</p>
-                    <p class="text-gray-600 dark:text-gray-300 text-xs mt-1.5 leading-relaxed">Thesis: Temporal Video Segmentation of Calisthenics Skills.</p>
-                </div>
-            </div>
-    
-            </div>
-            
-        </div>
     </section>
     <section id="skills" class="py-16 px-6 content-layer glass mt-10">
         <div class="max-w-5xl mx-auto space-y-10 fade-in">
-            <h2 class="text-3xl font-bold text-gray-900 dark:text-white border-b-2 border-violet-600 dark:border-violet-500 pb-2 inline-block">Technical Skills</h2>
+            <h2
+                class="text-3xl font-bold text-gray-900 dark:text-white border-b-2 border-violet-600 dark:border-violet-500 pb-2 inline-block">
+                Technical Skills</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white/80 dark:bg-gray-800/80 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2"><i class="fas fa-eye text-violet-500"></i> Computer Vision & AI</h3>
+                <div
+                    class="bg-white/80 dark:bg-gray-800/80 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2"><i
+                            class="fas fa-eye text-violet-500"></i> Computer Vision & AI</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 text-sm font-medium rounded-md border border-violet-100 dark:border-violet-800/50">Egocentric Vision</span>
-                        <span class="px-3 py-1 bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 text-sm font-medium rounded-md border border-violet-100 dark:border-violet-800/50">Object Detection</span>
-                        <span class="px-3 py-1 bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 text-sm font-medium rounded-md border border-violet-100 dark:border-violet-800/50">Pose Recognition</span>
-                        <span class="px-3 py-1 bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 text-sm font-medium rounded-md border border-violet-100 dark:border-violet-800/50">Depth Estimation</span>
-                        <span class="px-3 py-1 bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 text-sm font-medium rounded-md border border-violet-100 dark:border-violet-800/50">Temporal Segmentation</span>
+                        <span
+                            class="px-3 py-1 bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 text-sm font-medium rounded-md border border-violet-100 dark:border-violet-800/50">Egocentric
+                            Vision</span>
+                        <span
+                            class="px-3 py-1 bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 text-sm font-medium rounded-md border border-violet-100 dark:border-violet-800/50">Object
+                            Detection</span>
+                        <span
+                            class="px-3 py-1 bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 text-sm font-medium rounded-md border border-violet-100 dark:border-violet-800/50">Pose
+                            Recognition</span>
+                        <span
+                            class="px-3 py-1 bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 text-sm font-medium rounded-md border border-violet-100 dark:border-violet-800/50">Depth
+                            Estimation</span>
+                        <span
+                            class="px-3 py-1 bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 text-sm font-medium rounded-md border border-violet-100 dark:border-violet-800/50">Temporal
+                            Segmentation</span>
                     </div>
                 </div>
-                <div class="bg-white/80 dark:bg-gray-800/80 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2"><i class="fas fa-code text-violet-500"></i> Programming & Data</h3>
+                <div
+                    class="bg-white/80 dark:bg-gray-800/80 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2"><i
+                            class="fas fa-code text-violet-500"></i> Programming & Data</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-md border border-gray-200 dark:border-gray-600/50">PyTorch / Lightning</span>
-                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-md border border-gray-200 dark:border-gray-600/50">Detectron2 & Ultralytics</span>
-                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-md border border-gray-200 dark:border-gray-600/50">OpenCV</span>
-                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-md border border-gray-200 dark:border-gray-600/50">NumPy & Pandas</span>
-                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-md border border-gray-200 dark:border-gray-600/50">Python</span>
-                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-md border border-gray-200 dark:border-gray-600/50">C/C++</span>
-                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-md border border-gray-200 dark:border-gray-600/50">Bash Scripting</span>
-                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-md border border-gray-200 dark:border-gray-600/50">MySQL / SQL</span>
-                        <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-md border border-gray-200 dark:border-gray-600/50">API Development</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-md border border-gray-200 dark:border-gray-600/50">PyTorch
+                            / Lightning</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-md border border-gray-200 dark:border-gray-600/50">Detectron2
+                            & Ultralytics</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-md border border-gray-200 dark:border-gray-600/50">OpenCV</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-md border border-gray-200 dark:border-gray-600/50">NumPy
+                            & Pandas</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-md border border-gray-200 dark:border-gray-600/50">Python</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-md border border-gray-200 dark:border-gray-600/50">C/C++</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-md border border-gray-200 dark:border-gray-600/50">Bash
+                            Scripting</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-md border border-gray-200 dark:border-gray-600/50">MySQL
+                            / SQL</span>
+                        <span
+                            class="px-3 py-1 bg-gray-100 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-md border border-gray-200 dark:border-gray-600/50">API
+                            Development</span>
                     </div>
                 </div>
-                <div class="bg-white/80 dark:bg-gray-800/80 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2"><i class="fas fa-server text-violet-500"></i> DevOps & Tools</h3>
+                <div
+                    class="bg-white/80 dark:bg-gray-800/80 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2"><i
+                            class="fas fa-server text-violet-500"></i> DevOps & Tools</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium rounded-md border border-blue-100 dark:border-blue-800/50">ELK Stack</span>
-                        <span class="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium rounded-md border border-blue-100 dark:border-blue-800/50">Apache Spark / Kafka</span>                        
-                        <span class="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium rounded-md border border-blue-100 dark:border-blue-800/50">Docker</span>
-                        <span class="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium rounded-md border border-blue-100 dark:border-blue-800/50">Git & GitHub Actions</span>
-                        <span class="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium rounded-md border border-blue-100 dark:border-blue-800/50">Linux / SSH</span>
-                        <span class="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium rounded-md border border-blue-100 dark:border-blue-800/50">3D Modelling (Blender)</span>
+                        <span
+                            class="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium rounded-md border border-blue-100 dark:border-blue-800/50">ELK
+                            Stack</span>
+                        <span
+                            class="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium rounded-md border border-blue-100 dark:border-blue-800/50">Apache
+                            Spark / Kafka</span>
+                        <span
+                            class="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium rounded-md border border-blue-100 dark:border-blue-800/50">Docker</span>
+                        <span
+                            class="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium rounded-md border border-blue-100 dark:border-blue-800/50">Git
+                            & GitHub Actions</span>
+                        <span
+                            class="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium rounded-md border border-blue-100 dark:border-blue-800/50">Linux
+                            / SSH</span>
+                        <span
+                            class="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium rounded-md border border-blue-100 dark:border-blue-800/50">3D
+                            Modelling (Blender)</span>
                     </div>
                 </div>
             </div>
@@ -179,46 +308,87 @@
     </section>
     <section id="publications" class="py-16 px-6 content-layer glass-dark">
         <div class="max-w-5xl mx-auto space-y-10 fade-in">
-            <h2 class="text-3xl font-bold text-gray-900 dark:text-white border-b-2 border-violet-600 dark:border-violet-500 pb-2 inline-block">Publications</h2>
+            <h2
+                class="text-3xl font-bold text-gray-900 dark:text-white border-b-2 border-violet-600 dark:border-violet-500 pb-2 inline-block">
+                Publications</h2>
             <div class="grid grid-cols-1 gap-8">
-                <div class="group border-l-4 border-violet-200 dark:border-violet-900 hover:border-violet-600 dark:hover:border-violet-500 pl-6 transition-all bg-white/50 dark:bg-gray-800/50 p-4 rounded-r-xl hover:bg-white dark:hover:bg-gray-800 hover:shadow-md">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">Online Episodic Memory Visual Query Localization with Egocentric Streaming Object Memory</h3>
-                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Zaira Manigrasso, Matteo Dunnhofer, Antonino Furnari, Moritz Nottebaum, <strong>Antonio Finocchiaro</strong>, Marana Davide, Rosario Forte, Giovanni Maria Farinella, Christian Micheloni</p>
-                    <p class="text-gray-500 dark:text-gray-400 mt-1 italic">Winter Conference on Applications of Computer Vision (WACV), 2026</p>
+                <div
+                    class="group border-l-4 border-violet-200 dark:border-violet-900 hover:border-violet-600 dark:hover:border-violet-500 pl-6 transition-all bg-white/50 dark:bg-gray-800/50 p-4 rounded-r-xl hover:bg-white dark:hover:bg-gray-800 hover:shadow-md">
+                    <h3
+                        class="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">
+                        Online Episodic Memory Visual Query Localization with Egocentric Streaming Object Memory</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Zaira Manigrasso, Matteo Dunnhofer,
+                        Antonino Furnari, Moritz Nottebaum, <strong>Antonio Finocchiaro</strong>, Marana Davide, Rosario
+                        Forte, Giovanni Maria Farinella, Christian Micheloni</p>
+                    <p class="text-gray-500 dark:text-gray-400 mt-1 italic">Winter Conference on Applications of
+                        Computer Vision (WACV), 2026</p>
                     <div class="mt-3 flex gap-3">
-                        <a href="https://arxiv.org/abs/2411.16934" class="text-sm font-medium text-violet-600 dark:text-violet-400 bg-violet-100/50 dark:bg-violet-900/30 px-3 py-1 rounded-full hover:bg-violet-100 dark:hover:bg-violet-800/50 transition"><i class="fas fa-link mr-1"></i> arXiv</a>
+                        <a href="https://arxiv.org/abs/2411.16934"
+                            class="text-sm font-medium text-violet-600 dark:text-violet-400 bg-violet-100/50 dark:bg-violet-900/30 px-3 py-1 rounded-full hover:bg-violet-100 dark:hover:bg-violet-800/50 transition"><i
+                                class="fas fa-link mr-1"></i> arXiv</a>
                     </div>
                 </div>
-                <div class="group border-l-4 border-violet-200 dark:border-violet-900 hover:border-violet-600 dark:hover:border-violet-500 pl-6 transition-all bg-white/50 dark:bg-gray-800/50 p-4 rounded-r-xl hover:bg-white dark:hover:bg-gray-800 hover:shadow-md">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">Efficient Calisthenics Skills Classification through Foreground Instance Selection and Depth Estimation</h3>
-                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-1"><strong>Antonio Finocchiaro</strong>, Giovanni Maria Farinella, Antonino Furnari</p>
-                    <p class="text-gray-500 dark:text-gray-400 mt-1 italic">International Conference on Image Analysis and Processing (ICIAP), 2025</p>
+                <div
+                    class="group border-l-4 border-violet-200 dark:border-violet-900 hover:border-violet-600 dark:hover:border-violet-500 pl-6 transition-all bg-white/50 dark:bg-gray-800/50 p-4 rounded-r-xl hover:bg-white dark:hover:bg-gray-800 hover:shadow-md">
+                    <h3
+                        class="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">
+                        Efficient Calisthenics Skills Classification through Foreground Instance Selection and Depth
+                        Estimation</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-1"><strong>Antonio Finocchiaro</strong>,
+                        Giovanni Maria Farinella, Antonino Furnari</p>
+                    <p class="text-gray-500 dark:text-gray-400 mt-1 italic">International Conference on Image Analysis
+                        and Processing (ICIAP), 2025</p>
                     <div class="mt-3 flex gap-3">
-                        <a href="https://arxiv.org/abs/2507.12292" class="text-sm font-medium text-violet-600 dark:text-violet-400 bg-violet-100/50 dark:bg-violet-900/30 px-3 py-1 rounded-full hover:bg-violet-100 dark:hover:bg-violet-800/50 transition"><i class="fas fa-link mr-1"></i> arXiv</a>
+                        <a href="https://arxiv.org/abs/2507.12292"
+                            class="text-sm font-medium text-violet-600 dark:text-violet-400 bg-violet-100/50 dark:bg-violet-900/30 px-3 py-1 rounded-full hover:bg-violet-100 dark:hover:bg-violet-800/50 transition"><i
+                                class="fas fa-link mr-1"></i> arXiv</a>
                     </div>
                 </div>
-                <div class="group border-l-4 border-violet-200 dark:border-violet-900 hover:border-violet-600 dark:hover:border-violet-500 pl-6 transition-all bg-white/50 dark:bg-gray-800/50 p-4 rounded-r-xl hover:bg-white dark:hover:bg-gray-800 hover:shadow-md">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">T-EVO: Tracking in Egovision for Online Visual Episodic Memory</h3>
-                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Zaira Manigrasso, <strong>Antonio Finocchiaro</strong>, Davide Manara, Rosario Forte, Moritz Nottebaum, Matteo Dunnhofer, Giovanni Maria Farinella, Antonino Furnari, Christian Micheloni</p>
-                    <p class="text-gray-500 dark:text-gray-400 mt-1 italic">International Conference on Image Analysis and Processing (ICIAP), 2025</p>
+                <div
+                    class="group border-l-4 border-violet-200 dark:border-violet-900 hover:border-violet-600 dark:hover:border-violet-500 pl-6 transition-all bg-white/50 dark:bg-gray-800/50 p-4 rounded-r-xl hover:bg-white dark:hover:bg-gray-800 hover:shadow-md">
+                    <h3
+                        class="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">
+                        T-EVO: Tracking in Egovision for Online Visual Episodic Memory</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Zaira Manigrasso, <strong>Antonio
+                            Finocchiaro</strong>, Davide Manara, Rosario Forte, Moritz Nottebaum, Matteo Dunnhofer,
+                        Giovanni Maria Farinella, Antonino Furnari, Christian Micheloni</p>
+                    <p class="text-gray-500 dark:text-gray-400 mt-1 italic">International Conference on Image Analysis
+                        and Processing (ICIAP), 2025</p>
                     <div class="mt-3 flex gap-3">
-                        <a href="t-evoiciap.pdf" target="_blank" class="text-sm font-medium text-violet-600 dark:text-violet-400 bg-violet-100/50 dark:bg-violet-900/30 px-3 py-1 rounded-full hover:bg-violet-100 dark:hover:bg-violet-800/50 transition"><i class="fas fa-file-pdf mr-1"></i> PDF</a>
+                        <a href="t-evoiciap.pdf" target="_blank"
+                            class="text-sm font-medium text-violet-600 dark:text-violet-400 bg-violet-100/50 dark:bg-violet-900/30 px-3 py-1 rounded-full hover:bg-violet-100 dark:hover:bg-violet-800/50 transition"><i
+                                class="fas fa-file-pdf mr-1"></i> PDF</a>
                     </div>
                 </div>
-                <div class="group border-l-4 border-violet-200 dark:border-violet-900 hover:border-violet-600 dark:hover:border-violet-500 pl-6 transition-all bg-white/50 dark:bg-gray-800/50 p-4 rounded-r-xl hover:bg-white dark:hover:bg-gray-800 hover:shadow-md">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">Calisthenics Skills Temporal Segmentation</h3>
-                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-1"><strong>Antonio Finocchiaro</strong>, Giovanni Maria Farinella, Antonino Furnari</p>
-                    <p class="text-gray-500 dark:text-gray-400 mt-1 italic">VISAPP - International Conference on Computer Vision Theory and Applications, 2024</p>
+                <div
+                    class="group border-l-4 border-violet-200 dark:border-violet-900 hover:border-violet-600 dark:hover:border-violet-500 pl-6 transition-all bg-white/50 dark:bg-gray-800/50 p-4 rounded-r-xl hover:bg-white dark:hover:bg-gray-800 hover:shadow-md">
+                    <h3
+                        class="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">
+                        Calisthenics Skills Temporal Segmentation</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-1"><strong>Antonio Finocchiaro</strong>,
+                        Giovanni Maria Farinella, Antonino Furnari</p>
+                    <p class="text-gray-500 dark:text-gray-400 mt-1 italic">VISAPP - International Conference on
+                        Computer Vision Theory and Applications, 2024</p>
                     <div class="mt-3 flex gap-3">
-                        <a href="https://arxiv.org/abs/2507.12245" class="text-sm font-medium text-violet-600 dark:text-violet-400 bg-violet-100/50 dark:bg-violet-900/30 px-3 py-1 rounded-full hover:bg-violet-100 dark:hover:bg-violet-800/50 transition"><i class="fas fa-link mr-1"></i> arXiv</a>
+                        <a href="https://arxiv.org/abs/2507.12245"
+                            class="text-sm font-medium text-violet-600 dark:text-violet-400 bg-violet-100/50 dark:bg-violet-900/30 px-3 py-1 rounded-full hover:bg-violet-100 dark:hover:bg-violet-800/50 transition"><i
+                                class="fas fa-link mr-1"></i> arXiv</a>
                     </div>
                 </div>
-                <div class="group border-l-4 border-violet-200 dark:border-violet-900 hover:border-violet-600 dark:hover:border-violet-500 pl-6 transition-all bg-white/50 dark:bg-gray-800/50 p-4 rounded-r-xl hover:bg-white dark:hover:bg-gray-800 hover:shadow-md">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">A Real-Time System for Egocentric Hand-Object Interaction Detection in Industrial Domains</h3>
-                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-1"><strong>Antonio Finocchiaro</strong>, Alessandro Sebastiano Catinello, Michele Mazzamuto, Rosario Leonardi, Antonino Furnari, Giovanni Maria Farinella</p>
-                    <p class="text-gray-500 dark:text-gray-400 mt-1 italic">ICIAP Workshop on Human-Object Interaction: Integrating Egocentric and Exocentric Perspectives, 2025</p>
+                <div
+                    class="group border-l-4 border-violet-200 dark:border-violet-900 hover:border-violet-600 dark:hover:border-violet-500 pl-6 transition-all bg-white/50 dark:bg-gray-800/50 p-4 rounded-r-xl hover:bg-white dark:hover:bg-gray-800 hover:shadow-md">
+                    <h3
+                        class="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">
+                        A Real-Time System for Egocentric Hand-Object Interaction Detection in Industrial Domains</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-1"><strong>Antonio Finocchiaro</strong>,
+                        Alessandro Sebastiano Catinello, Michele Mazzamuto, Rosario Leonardi, Antonino Furnari, Giovanni
+                        Maria Farinella</p>
+                    <p class="text-gray-500 dark:text-gray-400 mt-1 italic">ICIAP Workshop on Human-Object Interaction:
+                        Integrating Egocentric and Exocentric Perspectives, 2025</p>
                     <div class="mt-3 flex gap-3">
-                        <a href="https://arxiv.org/abs/2507.13326" class="text-sm font-medium text-violet-600 dark:text-violet-400 bg-violet-100/50 dark:bg-violet-900/30 px-3 py-1 rounded-full hover:bg-violet-100 dark:hover:bg-violet-800/50 transition"><i class="fas fa-link mr-1"></i> arXiv</a>
+                        <a href="https://arxiv.org/abs/2507.13326"
+                            class="text-sm font-medium text-violet-600 dark:text-violet-400 bg-violet-100/50 dark:bg-violet-900/30 px-3 py-1 rounded-full hover:bg-violet-100 dark:hover:bg-violet-800/50 transition"><i
+                                class="fas fa-link mr-1"></i> arXiv</a>
                     </div>
                 </div>
             </div>
@@ -226,44 +396,101 @@
     </section>
     <section id="projects" class="py-16 px-6 content-layer glass">
         <div class="max-w-5xl mx-auto space-y-10 fade-in">
-            <h2 class="text-3xl font-bold text-gray-900 dark:text-white border-b-2 border-violet-600 dark:border-violet-500 pb-2 inline-block">Projects</h2>
-            <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-6 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition border border-gray-100 dark:border-gray-700 flex flex-col group">
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">Coralike</h3>
-                <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 flex-grow">An n8n automation that scrapes CoreRadio hourly, filters new metal releases through an AI model (Groq / Llama 3.3 70b), and sends personalized Telegram notifications based on your taste profile.</p>
-                <a href="https://github.com/antof27/coralike" class="text-violet-600 dark:text-violet-400 text-sm font-bold hover:underline mt-auto"><i class="fab fa-github mr-1"></i> View Repository</a>
-            </div>  
-
+            <h2
+                class="text-3xl font-bold text-gray-900 dark:text-white border-b-2 border-violet-600 dark:border-violet-500 pb-2 inline-block">
+                Projects</h2>
+            <h2
+                class="text-3xl font-bold text-gray-900 dark:text-white border-b-2 border-violet-600 dark:border-violet-500 pb-2 inline-block">
+                Projects</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-6 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition border border-gray-100 dark:border-gray-700 flex flex-col group">
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">Exploring and Evaluating Advanced Methods in Object Detection</h3>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 flex-grow">Comparing Faster R-CNN, Mask R-CNN, and YOLO on the COCO-O dataset, enriching annotations via SAM.</p>
-                    <span class="text-xs font-semibold text-violet-500 dark:text-violet-400 mb-2 uppercase tracking-wide">Research Project</span>
+                <!-- Featured Project: Coralike -->
+                <div
+                    class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-md p-6 rounded-xl shadow-lg ring-1 ring-violet-500/30 dark:ring-violet-400/20 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-violet-200 dark:border-violet-800 flex flex-col group relative overflow-hidden">
+                    <div class="absolute top-0 right-0">
+                        <div
+                            class="bg-violet-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-widest shadow-sm">
+                            <i class="fas fa-star mr-1"></i> Featured
+                        </div>
+                    </div>
+                    <h3
+                        class="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">
+                        Coralike</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 flex-grow">An n8n automation that scrapes
+                        CoreRadio hourly, filters new metal releases through an AI model (Groq / Llama 3.3 70b), and
+                        sends personalized Telegram notifications based on your taste profile.</p>
+                    <a href="https://github.com/antof27/coralike" target="_blank"
+                        class="text-violet-600 dark:text-violet-400 text-sm font-bold hover:underline mt-auto flex items-center">
+                        <i class="fab fa-github mr-1.5"></i> View Repository
+                        <i
+                            class="fas fa-arrow-right ml-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                    </a>
                 </div>
-                <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-6 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition border border-gray-100 dark:border-gray-700 flex flex-col group">
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">Human Body Pose Estimation</h3>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 flex-grow">Missing joints reconstruction through interpolations comparison, utilizing OpenPose for Calisthenics isometric elements.</p>
-                    <a href="https://github.com/antof27/HBPE-Missing-Joints-Reconstruction" class="text-violet-600 dark:text-violet-400 text-sm font-bold hover:underline mt-auto"><i class="fab fa-github mr-1"></i> View Repository</a>
+                <div
+                    class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-6 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition border border-gray-100 dark:border-gray-700 flex flex-col group">
+                    <h3
+                        class="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">
+                        Exploring and Evaluating Advanced Methods in Object Detection</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 flex-grow">Comparing Faster R-CNN, Mask
+                        R-CNN, and YOLO on the COCO-O dataset, enriching annotations via SAM.</p>
+                    <span
+                        class="text-xs font-semibold text-violet-500 dark:text-violet-400 mb-2 uppercase tracking-wide">Research
+                        Project</span>
                 </div>
-                <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-6 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition border border-gray-100 dark:border-gray-700 flex flex-col group">
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">Machine Learning Resource Requirements</h3>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 flex-grow">Literature and load analysis across configurations, evaluating hyperparameters' influence on computational load.</p>
-                    <a href="https://github.com/antof27/An-Outlook-on-Machine-Learning-Resource-Requirements" class="text-violet-600 dark:text-violet-400 text-sm font-bold hover:underline mt-auto"><i class="fab fa-github mr-1"></i> View Repository</a>
+                <div
+                    class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-6 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition border border-gray-100 dark:border-gray-700 flex flex-col group">
+                    <h3
+                        class="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">
+                        Human Body Pose Estimation</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 flex-grow">Missing joints reconstruction
+                        through interpolations comparison, utilizing OpenPose for Calisthenics isometric elements.</p>
+                    <a href="https://github.com/antof27/HBPE-Missing-Joints-Reconstruction"
+                        class="text-violet-600 dark:text-violet-400 text-sm font-bold hover:underline mt-auto"><i
+                            class="fab fa-github mr-1"></i> View Repository</a>
                 </div>
-                <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-6 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition border border-gray-100 dark:border-gray-700 flex flex-col group">
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">Calisthenics Competitions Database</h3>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 flex-grow">Designed and built using XAMPP and phpMyAdmin, featuring custom queries, triggers, and an E-R diagram.</p>
-                    <a href="https://github.com/antof27/Calisthenics-Competitions-Database" class="text-violet-600 dark:text-violet-400 text-sm font-bold hover:underline mt-auto"><i class="fab fa-github mr-1"></i> View Repository</a>
+                <div
+                    class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-6 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition border border-gray-100 dark:border-gray-700 flex flex-col group">
+                    <h3
+                        class="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">
+                        Machine Learning Resource Requirements</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 flex-grow">Literature and load analysis
+                        across configurations, evaluating hyperparameters' influence on computational load.</p>
+                    <a href="https://github.com/antof27/An-Outlook-on-Machine-Learning-Resource-Requirements"
+                        class="text-violet-600 dark:text-violet-400 text-sm font-bold hover:underline mt-auto"><i
+                            class="fab fa-github mr-1"></i> View Repository</a>
                 </div>
-                <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-6 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition border border-gray-100 dark:border-gray-700 flex flex-col group">
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">FeelsCore</h3>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 flex-grow">A system to update latest music releases and provide real-time emotional analysis of the songs.</p>
-                    <a href="https://github.com/antof27/FeelsCore" class="text-violet-600 dark:text-violet-400 text-sm font-bold hover:underline mt-auto"><i class="fab fa-github mr-1"></i> View Repository</a>
+                <div
+                    class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-6 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition border border-gray-100 dark:border-gray-700 flex flex-col group">
+                    <h3
+                        class="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">
+                        Calisthenics Competitions Database</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 flex-grow">Designed and built using XAMPP
+                        and phpMyAdmin, featuring custom queries, triggers, and an E-R diagram.</p>
+                    <a href="https://github.com/antof27/Calisthenics-Competitions-Database"
+                        class="text-violet-600 dark:text-violet-400 text-sm font-bold hover:underline mt-auto"><i
+                            class="fab fa-github mr-1"></i> View Repository</a>
                 </div>
-                <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-6 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition border border-gray-100 dark:border-gray-700 flex flex-col group">
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">xCoreBot</h3>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 flex-grow">A Telegram Bot built with SOLID principles, Unit Tests, and GitHub Actions to deliver recent metal music releases.</p>
-                    <a href="https://github.com/antof27/xCoreBot" class="text-violet-600 dark:text-violet-400 text-sm font-bold hover:underline mt-auto"><i class="fab fa-github mr-1"></i> View Repository</a>
+                <div
+                    class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-6 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition border border-gray-100 dark:border-gray-700 flex flex-col group">
+                    <h3
+                        class="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">
+                        FeelsCore</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 flex-grow">A system to update latest music
+                        releases and provide real-time emotional analysis of the songs.</p>
+                    <a href="https://github.com/antof27/FeelsCore"
+                        class="text-violet-600 dark:text-violet-400 text-sm font-bold hover:underline mt-auto"><i
+                            class="fab fa-github mr-1"></i> View Repository</a>
+                </div>
+                <div
+                    class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-6 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition border border-gray-100 dark:border-gray-700 flex flex-col group">
+                    <h3
+                        class="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">
+                        xCoreBot</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 flex-grow">A Telegram Bot built with SOLID
+                        principles, Unit Tests, and GitHub Actions to deliver recent metal music releases.</p>
+                    <a href="https://github.com/antof27/xCoreBot"
+                        class="text-violet-600 dark:text-violet-400 text-sm font-bold hover:underline mt-auto"><i
+                            class="fab fa-github mr-1"></i> View Repository</a>
                 </div>
             </div>
         </div>
@@ -271,7 +498,7 @@
     <footer class="bg-gray-900 text-gray-400 py-8 text-center content-layer">
         <p>&copy; Antonio Finocchiaro</p>
     </footer>
- <script>
+    <script>
         // 1. Theme Toggle Logic (Dark/Light Mode)
         const themeToggleBtn = document.getElementById('theme-toggle');
         const themeToggleIcon = document.getElementById('theme-toggle-icon');
@@ -282,9 +509,9 @@
             themeToggleIcon.classList.add('fa-sun');
         }
 
-        themeToggleBtn.addEventListener('click', function() {
+        themeToggleBtn.addEventListener('click', function () {
             document.documentElement.classList.toggle('dark');
-            
+
             if (document.documentElement.classList.contains('dark')) {
                 localStorage.setItem('color-theme', 'dark');
                 themeToggleIcon.classList.remove('fa-moon');
@@ -342,17 +569,17 @@
             });
         });
 
-    particlesJS("particles-js", {
+        particlesJS("particles-js", {
             "particles": {
                 "number": { "value": 60, "density": { "enable": true, "value_area": 800 } }, // Slightly reduced baseline to save memory
-                "color": { "value": "#7c3aed" }, 
+                "color": { "value": "#7c3aed" },
                 "shape": { "type": "circle" },
                 "opacity": { "value": 0.7, "random": false },
                 "size": { "value": 4, "random": true },
                 "line_linked": {
                     "enable": true,
                     "distance": 120, // Keeps line calculations tight and fast
-                    "color": "#a78bfa", 
+                    "color": "#a78bfa",
                     "opacity": 0.6,
                     "width": 1.5
                 },
@@ -367,10 +594,10 @@
                 }
             },
             "interactivity": {
-                "detect_on": "canvas", 
+                "detect_on": "canvas",
                 "events": {
                     "onhover": { "enable": true, "mode": "grab" },
-                    "onclick": { "enable": true, "mode": "push" }, 
+                    "onclick": { "enable": true, "mode": "push" },
                     "resize": true
                 },
                 "modes": {
